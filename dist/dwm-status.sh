@@ -1,0 +1,1 @@
+/home/gpoole/Opt/dwm-status.sh
