@@ -76,10 +76,12 @@ static const char *mute_vol[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@",
                                  "toggle", NULL};
 static const char *brighter[] = {"brightnessctl", "set", "10%+", NULL};
 static const char *dimmer[] = {"brightnessctl", "set", "10%-", NULL};
+static const char *quitfrcmd[] = {"killall", "xinit", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     {MODKEY, XK_w, spawn, {.v = webcmd}},
+    {MODKEY | ShiftMask, XK_q, spawn, {.v = quitfrcmd}},
     {MODKEY, XK_e, spawn, {.v = emacscmd}},
     {MODKEY, XK_space, spawn, {.v = dmenucmd}},
     {MODKEY | ShiftMask, XK_Return, spawn, {.v = termcmd}},
@@ -110,7 +112,7 @@ static const Key keys[] = {
     {MODKEY | ShiftMask, XK_period, tagmon, {.i = +1}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
-            TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
+            TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_r, quit, {0}},
 };
 
 /* button definitions */
