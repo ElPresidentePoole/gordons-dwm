@@ -1,1 +1,13 @@
-/usr/local/bin/maidify
+#!/usr/bin/env sh
+# maidify is a script for starting programs automatically, usually with a window manager
+
+if [ -z $1 ]; then
+    echo "no program specified - bailing"
+    exit 1
+fi
+if ! command -v $1; then
+    echo "$1 was not found in \$PATH"
+fi
+if ! pgrep $1; then
+    $@ & # XXX i *think* this is the canonical way to run a program + the rest of the args?
+fi
