@@ -5,19 +5,28 @@ static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int snap = 32;    /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
 static const int topbar = 1;            /* 0 means bottom bar */
-static const char *fonts[] = {"Hack Nerd Font:size=14"};
+static const char *fonts[] = {"Spleen 8x16:pixelsize=16"};
 // static const char dmenufont[] = "CaskaydiaCove Nerd Font:size=14";
 static const char col_base[] = "#1e1e2e";
 static const char col_blue[] = "#89b4fa";
+static const char col_red[] = "#f38ba8";
 static const char col_text[] = "#cdd6f4";
 static const char *colors[][3] = {
     /*               fg         bg         border   */
     [SchemeNorm] = {col_text, col_base, col_base},
-    [SchemeSel] = {col_blue, col_base, col_blue},
+    [SchemeSel] = {col_red, col_base, col_red},
 };
 
+// 󱙧 w/e tag
+// 󰅄 emacs tag
+//  games tag
+// 󰖟 web tag
+//  terminal tag?
+// 
+// 󰊓
+// 󰛓
 /* tagging */
-static const char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+static const char *tags[] = {"󱙧", "󰅄", "󰗋", "", "󰖟"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -26,7 +35,10 @@ static const Rule rules[] = {
      */
     /* class      instance    title       tags mask     isfloating   monitor */
     {"Gimp", NULL, NULL, 0, 1, -1},
-    {"Firefox", NULL, NULL, 1 << 8, 0, -1},
+    {"Firefox", NULL, NULL, 1 << 4, 0, -1},
+    {"steam", NULL, NULL, 1 << 3, 1, -1},
+    {"Emacs", NULL, NULL, 1 << 1, 0, -1},
+    {"vesktop", NULL, NULL, 1 << 2, 0, -1},
 };
 
 /* layout(s) */
@@ -39,9 +51,9 @@ static const int lockfullscreen =
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    {"[]=", tile}, /* first entry is default */
-    {"><>", NULL}, /* no layout function means floating behavior */
-    {"[M]", monocle},
+    {"", tile},  /* first entry is default */
+    {"󰛓", NULL}, /* no layout function means floating behavior */
+    {"", monocle},
 };
 
 /* key definitions */
@@ -65,9 +77,10 @@ static char dmenumon[2] =
 // "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
 // "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
 static const char *dmenucmd[] = {"j4-dmenu-desktop", NULL};
-static const char *termcmd[] = {"alacritty", NULL};
-static const char *webcmd[] = {"flatpak", "run", "com.brave.Browser", NULL};
+static const char *termcmd[] = {"st", NULL};
+static const char *webcmd[] = {"firefox", NULL};
 static const char *emacscmd[] = {"emacs", NULL};
+static const char *lock[] = {"slock", NULL};
 static const char *up_vol[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@",
                                "+10%", NULL};
 static const char *down_vol[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@",
@@ -82,6 +95,7 @@ static const Key keys[] = {
     /* modifier                     key        function        argument */
     {MODKEY, XK_w, spawn, {.v = webcmd}},
     {MODKEY | ShiftMask, XK_q, spawn, {.v = quitfrcmd}},
+    {MODKEY | ShiftMask, XK_x, spawn, {.v = lock}},
     {MODKEY, XK_e, spawn, {.v = emacscmd}},
     {MODKEY, XK_space, spawn, {.v = dmenucmd}},
     {MODKEY | ShiftMask, XK_Return, spawn, {.v = termcmd}},
