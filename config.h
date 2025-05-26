@@ -5,16 +5,21 @@ static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int snap = 32;    /* snap pixel */
 static const int showbar = 1;           /* 0 means no bar */
 static const int topbar = 1;            /* 0 means bottom bar */
-static const char *fonts[] = {"Spleen 8x16:pixelsize=16"};
+// static const char *fonts[] = {"Spleen 8x16:pixelsize=16"};
+static const char *fonts[] = {"Adwaita Mono:size=10",
+                              "CaskaydiaCove Nerd Font:size=10"};
 // static const char dmenufont[] = "CaskaydiaCove Nerd Font:size=14";
 static const char col_base[] = "#1e1e2e";
+static const char col_mantle[] = "#181825";
+static const char col_core[] = "#11111b";
 static const char col_blue[] = "#89b4fa";
 static const char col_red[] = "#f38ba8";
+static const char col_mauve[] = "#cba6f7";
 static const char col_text[] = "#cdd6f4";
 static const char *colors[][3] = {
     /*               fg         bg         border   */
-    [SchemeNorm] = {col_text, col_base, col_base},
-    [SchemeSel] = {col_red, col_base, col_red},
+    [SchemeNorm] = {col_text, col_base, col_mantle},
+    [SchemeSel] = {col_mauve, col_core, col_mauve},
 };
 
 // 󱙧 w/e tag
@@ -26,7 +31,7 @@ static const char *colors[][3] = {
 // 󰊓
 // 󰛓
 /* tagging */
-static const char *tags[] = {"󱙧", "󰅄", "󰗋", "", "󰖟"};
+static const char *tags[] = {"󱙧", "", "󰗋", "", "", "󰖟"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -35,8 +40,8 @@ static const Rule rules[] = {
      */
     /* class      instance    title       tags mask     isfloating   monitor */
     {"Gimp", NULL, NULL, 0, 1, -1},
-    {"Firefox", NULL, NULL, 1 << 4, 0, -1},
-    {"steam", NULL, NULL, 1 << 3, 1, -1},
+    {"Firefox", NULL, NULL, 1 << 5, 0, -1},
+    {"steam", NULL, NULL, 1 << 3, 0, -1},
     {"Emacs", NULL, NULL, 1 << 1, 0, -1},
     {"vesktop", NULL, NULL, 1 << 2, 0, -1},
 };
