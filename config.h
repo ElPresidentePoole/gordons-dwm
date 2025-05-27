@@ -9,17 +9,11 @@ static const int topbar = 1;            /* 0 means bottom bar */
 static const char *fonts[] = {"Adwaita Mono:size=10",
                               "CaskaydiaCove Nerd Font:size=10"};
 // static const char dmenufont[] = "CaskaydiaCove Nerd Font:size=14";
-static const char col_base[] = "#1e1e2e";
-static const char col_mantle[] = "#181825";
-static const char col_core[] = "#11111b";
-static const char col_blue[] = "#89b4fa";
-static const char col_red[] = "#f38ba8";
-static const char col_mauve[] = "#cba6f7";
-static const char col_text[] = "#cdd6f4";
+#include "catppuccin.h"
 static const char *colors[][3] = {
     /*               fg         bg         border   */
     [SchemeNorm] = {col_text, col_base, col_mantle},
-    [SchemeSel] = {col_mauve, col_core, col_mauve},
+    [SchemeSel] = {col_mauve, col_crust, col_mauve},
 };
 
 // 󱙧 w/e tag
@@ -95,10 +89,12 @@ static const char *mute_vol[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@",
 static const char *brighter[] = {"brightnessctl", "set", "10%+", NULL};
 static const char *dimmer[] = {"brightnessctl", "set", "10%-", NULL};
 static const char *quitfrcmd[] = {"killall", "xinit", NULL};
+static const char *powerctl[] = {"powerprofilesctl-dmenu", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     {MODKEY, XK_w, spawn, {.v = webcmd}},
+    {MODKEY | ShiftMask, XK_p, spawn, {.v = powerctl}},
     {MODKEY | ShiftMask, XK_q, spawn, {.v = quitfrcmd}},
     {MODKEY | ShiftMask, XK_x, spawn, {.v = lock}},
     {MODKEY, XK_e, spawn, {.v = emacscmd}},
