@@ -9,12 +9,8 @@ static const int topbar = 1;            /* 0 means bottom bar */
 static const char *fonts[] = {"Adwaita Mono:size=10",
                               "CaskaydiaCove Nerd Font:size=10"};
 // static const char dmenufont[] = "CaskaydiaCove Nerd Font:size=14";
-#include "catppuccin.h"
-static const char *colors[][3] = {
-    /*               fg         bg         border   */
-    [SchemeNorm] = {col_text, col_base, col_mantle},
-    [SchemeSel] = {col_mauve, col_crust, col_mauve},
-};
+#define THEME CATPPUCCIN
+#include "themes.h"
 
 // 󱙧 w/e tag
 // 󰅄 emacs tag
@@ -26,7 +22,8 @@ static const char *colors[][3] = {
 // 󰛓
 /* tagging */
 // static const char *tags[] = {"󱙧", "", "󰗋", "", "", "󰖟"};
-static const char *tags[] = {"etc", "emacs", "voip", "steam", "games", "web"};
+static const char *tags[] = {"etc",   "emacs", "mail", "voip",
+                             "steam", "games", "web"};
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -35,10 +32,12 @@ static const Rule rules[] = {
      */
     /* class      instance    title       tags mask     isfloating   monitor */
     {"Gimp", NULL, NULL, 0, 1, -1},
-    {"Firefox", NULL, NULL, 1 << 5, 0, -1},
-    {"steam", NULL, NULL, 1 << 3, 0, -1},
+    {"Firefox", NULL, NULL, 1 << 6, 0, -1},
+    {"steam", NULL, NULL, 1 << 4, 0, -1},
     {"Emacs", NULL, NULL, 1 << 1, 0, -1},
-    {"vesktop", NULL, NULL, 1 << 2, 0, -1},
+    {"vesktop", NULL, NULL, 1 << 3, 0, -1},
+    {"Godot", NULL, NULL, 0, 1, -1},
+    {"Thunderbird", NULL, NULL, 1 << 2, 1, -1},
 };
 
 /* layout(s) */
